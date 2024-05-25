@@ -1,0 +1,14 @@
+---
+import Layout from "../../layout/Layout.astro";
+const { id } = Astro.params;
+if (!/^\d+$/.test(id)) {
+  return Astro.redirect('/error');
+}
+---
+
+<Layout title="Videoclub | Blog">
+	<div class="h-20"/>
+	<h1>Blog</h1>
+  	<p>Este es el contenido de la página de Blog</p>
+    <p>{id}</p>
+</Layout>

@@ -1,0 +1,14 @@
+---
+import Layout from "../../layout/Layout.astro";
+const { text } = Astro.params;
+if (!/^[a-zA-Z]+$/.test(text)) {
+  return Astro.redirect('/error');
+}
+---
+
+<Layout title="Videoclub | Servicios">
+	<div class="h-20"/>
+	<h1>Servicios</h1>
+  	<p>Este es el contenido de la página de Servicios</p>
+    <p>{text}</p>
+</Layout>
