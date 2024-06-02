@@ -1,13 +1,17 @@
 ---
+interface Props {
+	route: String
+}
 
+const { route } = Astro.props
 ---
 
 <header
-    class="py-3 px-10 flex items-center fixed top-0 w-full justify-between z-40 bg-white text-black font-semibold text-lg"
+    class="py-3 px-10 flex items-center fixed top-0 w-full justify-between z-40 bg-white text-black font-bold text-2xl"
 >
     <div class="flex flex-grow">
         <a href="/">
-            VideoClub
+            Cexpe
         </a>
     </div>
 
@@ -15,16 +19,25 @@
     <div class="hidden lg:flex lg:flex-grow lg:items-center lg:justify-between" 
     id="menu">
 
-        <nav class="lg:flex h-full">
+        <nav class="lg:flex h-full ">
             <ul
-            class="flex text-sm gap-4" id="menu-items"
+            class="flex text-lg font-semibold gap-4" id="menu-items"
             >
-                <li><a class="hover:text-mainColor-400 transition-all duration-200" href="/">Home</a></li>
-                <li><a class="hover:text-mainColor-400 transition-all duration-200" href="/services">Servicios</a></li>
-                <li><a class="hover:text-mainColor-400 transition-all duration-200" href="/proyects">Proyectos</a></li>
-                <li><a class="hover:text-mainColor-400 transition-all duration-200" href="/customers">Clientes</a></li>
-                <li><a class="hover:text-mainColor-400 transition-all duration-200" href="/blog">Blog</a></li>
-                <li><a class="hover:text-mainColor-400 transition-all duration-200" href="/contact">Contacto</a></li>
+                <li><a class={`${route === "index" ? 
+                "text-red-700 hover:text-red-700 transition-all duration-200" : 
+                "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/">Inicio</a></li>
+                <li><a class={`${route === "programs" ? 
+                "text-red-700 hover:text-red-700 transition-all duration-200" : 
+                "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/programs">Programas</a></li>
+                <li><a class={`${route === "workshops" ? 
+                "text-red-700 hover:text-red-700 transition-all duration-200" : 
+                "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/workshops">Talleres</a></li>
+                <li><a class={`${route === "advice" ? 
+                "text-red-700 hover:text-red-700 transition-all duration-200" : 
+                "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/advice">Asesoramiento</a></li>
+                <li><a class={`${route === "contact" ? 
+                "text-red-700 hover:text-red-700 transition-all duration-200" : 
+                "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/contact">Contacto</a></li>
             </ul>
         </nav>
     </div>

@@ -1,0 +1,30 @@
+---
+import Layout from "../../layout/Layout.astro";
+import axios from "axios";
+
+
+	const response = await axios.get("http://localhost:3000/workshops");
+	const workshops = response.data;
+	console.log(workshops)
+
+---
+
+<Layout route="workshops" title="Cexpe | Talleres">
+	<div class="h-20"/>
+	<div class="mx-auto max-w-screen-lg" >
+		<h1>Talleres</h1>
+		<p>Los talleres disponibles son:</p>
+		<ul class="text-blue-500">
+			{
+				workshops.map((workshop) => (
+					<li class="hover:text-red-500">
+						<a href={`/workshops/${workshop.name}`}>
+							{workshop.name}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+
+</Layout>
