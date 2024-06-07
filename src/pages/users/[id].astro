@@ -1,0 +1,30 @@
+---
+import Layout from "../../layout/Layout.astro";
+import axios from "axios";
+const { id } = Astro.params;
+// if (!/^[a-zA-Z]+$/.test(text)) {
+//   return Astro.redirect('/error');
+// }
+
+
+
+	const response = await axios.get(`http://localhost:3000/persona/${id}`);
+	const person = response.data;
+	console.log(person)
+---
+
+<Layout route="user" title="Cexpe | Personas">
+	<div class="h-20"/>
+	<h1>Persona identificada</h1>
+  	<p>Sus datos son los siguientes</p>
+	  <div class="flex flex-col mx-auto max-w-screen-lg" >
+        <span><strong>Nombre:</strong> {person.cPerNombre}</span>
+		<span><strong>Apellido:</strong> {person.cPerApellido}</span>
+		<span><strong>Dirección:</strong> {person.cPerDireccion}</span>
+		<span><strong>Fecha </strong>de Nacimiento: {person.cPerFecNac}</span>
+		<span><strong>Edad:</strong> {person.nPerEdad}</span>
+		<span><strong>Sexo:</strong> {person.cPerSexo}</span>
+		<span><strong>Sueldo:</strong> {person.nPerSueldo}</span>
+		<span><strong>Rnd:</strong> {person.cPerRnd}</span>
+    </div>
+</Layout>
