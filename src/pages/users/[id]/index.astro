@@ -1,0 +1,81 @@
+---
+import Layout from "../../../layout/Layout.astro";
+import axios from "axios";
+const { id } = Astro.params;
+
+const response = await axios.get(`http://localhost:3000/persona/${id}`);
+const person = response.data;
+console.log(person)
+---
+
+<Layout route="user" title="Cexpe | Personas">
+	<div class="h-screen flex justify-center items-center" >
+		<div class="flex flex-col mx-auto min-w-screen-xl p-6 bg-white rounded-lg shadow-lg shadow-stone-400">
+			<h2 class="text-2xl font-bold mb-4">Detalles de la Persona</h2>
+			<input type="hidden" id="id" value={id} >
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+				<div class="flex flex-col">
+					<span class="font-semibold text-gray-700">Nombre:</span>
+					<span class="text-gray-900">{person.cPerNombre}</span>
+				</div>
+				<div class="flex flex-col">
+					<span class="font-semibold text-gray-700">Apellido:</span>
+					<span class="text-gray-900">{person.cPerApellido}</span>
+				</div>
+				<div class="flex flex-col">
+					<span class="font-semibold text-gray-700">Dirección:</span>
+					<span class="text-gray-900">{person.cPerDireccion}</span>
+				</div>
+				<div class="flex flex-col">
+					<span class="font-semibold text-gray-700">Fecha de Nacimiento:</span>
+					<span class="text-gray-900">{person.cPerFecNac}</span>
+				</div>
+				<div class="flex flex-col">
+					<span class="font-semibold text-gray-700">Edad:</span>
+					<span class="text-gray-900">{person.nPerEdad}</span>
+				</div>
+				<div class="flex flex-col">
+					<span class="font-semibold text-gray-700">Sexo:</span>
+					<span class="text-gray-900">{person.cPerSexo}</span>
+				</div>
+				<div class="flex flex-col">
+					<span class="font-semibold text-gray-700">Sueldo:</span>
+					<span class="text-gray-900">{person.nPerSueldo}</span>
+				</div>
+				<div class="flex flex-col">
+					<span class="font-semibold text-gray-700">Rnd:</span>
+					<span class="text-gray-900">{person.cPerRnd}</span>
+				</div>
+				<a href={`./${id}/edit`} class="bg-blue-500 text-white rounded-md text-center py-1">
+					<i class="fa-regular fa-pen-to-square"></i>
+					<span>Editar</span>
+				</a>
+				<button class="bg-red-500 text-white rounded-md text-center py-1" id="deleteButton">
+					<i class="fa-regular fa-trash"></i>
+					<span>Eliminar</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<script>
+	import axios from "axios";
+
+	document.addEventListener('DOMContentLoaded', () => {
+		document.getElementById('deleteButton').addEventListener('click', async () => {
+			const id = (document.querySelector('#id') as HTMLInputElement).value;
+			try {
+				const deleteResponse = await axios.delete(`http://localhost:3000/persona/${id}`);
+				if (deleteResponse.status === 200) {
+					window.location.href = "/users";
+				} else {
+					alert("Error al eliminar el servicio");
+				}
+			} catch (error) {
+				alert("Error al eliminar el servicio");
+				console.error(error);
+			}
+		});
+	});
+</script>

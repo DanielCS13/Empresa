@@ -1,0 +1,110 @@
+---
+interface Props {
+    formTitle: string,
+    username: string,
+    lastname: string,
+    address: string,
+    birthdate: string,
+    age: number,
+    salary: number,
+    status: number
+}
+
+const {
+    formTitle,
+    username,
+    lastname,
+    address,
+    birthdate,
+    age,
+    salary,
+    status
+} = Astro.props;
+---
+
+<form id="userForm" class="max-w-xl mx-auto flex flex-col bg-violet-800 p-10 rounded-3xl">
+    <h1 class="text-center font-bold text-2xl text-white mb-6">{formTitle}</h1>
+    <div class="space-y-8">
+        <label for="username" class="flex flex-col space-y-2">
+            <span class="text-white">Ingresar nombre de usuario</span>
+            <input 
+            type="text" name="username" required aria-invalid="true" 
+            title="Por favor, ingrese el nombre de usuario"
+            oninvalid="this.setCustomValidity('Por favor, ingrese el nombre de usuario')"
+            oninput="this.setCustomValidity('')"
+            id="username" class="text-black" 
+            value={username}>
+        </label>
+
+        <label for="lastname" class="flex flex-col space-y-2">
+            <span class="text-white">Ingresar apellido de usuario</span>
+            <input 
+            type="text" name="lastname" required aria-invalid="true" 
+            title="Por favor, ingrese el apellido de usuario"
+            oninvalid="this.setCustomValidity('Por favor, ingrese el apellido de usuario')"
+            oninput="this.setCustomValidity('')"
+            id="lastname" class="text-black"
+            value={lastname}>
+        </label>
+
+        <label for="address" class="flex flex-col space-y-2">
+            <span class="text-white">Ingresar dirección de usuario</span>
+            <input 
+            type="text" name="address" required aria-invalid="true" 
+            title="Por favor, ingrese la dirección de usuario"
+            oninvalid="this.setCustomValidity('Por favor, ingrese la dirección de usuario')"
+            oninput="this.setCustomValidity('')"
+            id="address" class="text-black"
+            value={address}>
+        </label>
+
+        <label for="birthdate" class="flex flex-col space-y-2">
+            <span class="text-white">Ingresar fecha de nacimiento de usuario</span>
+            <input 
+            type="date" name="birthdate" required aria-invalid="true" 
+            title="Por favor, ingrese la fecha de nacimiento de usuario"
+            oninvalid="this.setCustomValidity('Por favor, ingrese la fecha de nacimiento de usuario')"
+            oninput="this.setCustomValidity('')"
+            id="birthdate" class="text-black"
+            value={birthdate}>
+        </label>
+
+        <label for="age" class="flex flex-col space-y-2">
+            <span class="text-white">Ingresar edad de usuario</span>
+            <input 
+            type="number" name="age" required aria-invalid="true" 
+            title="Por favor, ingrese la edad de usuario"
+            oninvalid="this.setCustomValidity('Por favor, ingrese la edad de usuario')"
+            oninput="this.setCustomValidity('')"
+            id="age" class="text-black"
+            value={age}>
+        </label>
+
+        <label for="salary" class="flex flex-col space-y-2">
+            <span class="text-white">Ingresar sueldo de usuario</span>
+            <input 
+            type="number" name="salary" required aria-invalid="true" 
+            title="Por favor, ingrese el sueldo de usuario"
+            oninvalid="this.setCustomValidity('Por favor, ingrese el sueldo de usuario')"
+            oninput="this.setCustomValidity('')"
+            id="salary" class="text-black"
+            value={salary}>
+        </label>
+
+        <label for="status" class="flex flex-col space-y-2">
+            <span class="text-white">Ingresar estado de usuario</span>
+            <select 
+            name="status" required aria-invalid="true" 
+            title="Por favor, seleccione el estado de usuario"
+            oninvalid="this.setCustomValidity('Por favor, seleccione el estado de usuario')"
+            oninput="this.setCustomValidity('')"
+            id="status" class="text-black">
+                <option value="1" selected={status === 1}>1</option>
+                <option value="0" selected={status === 0}>0</option>
+            </select>
+        </label>
+    </div>
+    <div class="flex justify-center mt-8" >
+        <button class="bg-orange-500 hover:bg-orange-600 p-2 px-4 rounded-full " type="submit">Enviar servicio</button>
+    </div>
+</form>
