@@ -11,7 +11,7 @@ const { route } = Astro.props
 >
     <div class="flex flex-grow">
         <a href="/">
-            Empresa
+            Examen
         </a>
     </div>
 
@@ -25,25 +25,25 @@ const { route } = Astro.props
             >
                 <li><a class={`${route === "index" ? 
                 "text-red-700 hover:text-red-700 transition-all duration-200" : 
-                "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/">Inicio</a></li>
-                <!-- <li><a class={`${route === "programs" ? 
-                "text-red-700 hover:text-red-700 transition-all duration-200" : 
-                "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/programs">Programas</a></li>
-                <li><a class={`${route === "workshops" ? 
-                "text-red-700 hover:text-red-700 transition-all duration-200" : 
-                "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/workshops">Talleres</a></li>
-                <li><a class={`${route === "advice" ? 
-                "text-red-700 hover:text-red-700 transition-all duration-200" : 
-                "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/advice">Asesoramiento</a></li> -->
-                <li><a class={`${route === "user" ? 
+                "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/">Home</a></li>
+                <li><a class={`${route === "services" ? 
                     "text-red-700 hover:text-red-700 transition-all duration-200" : 
-                    "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/users">Personas</a></li>
+                    "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/services">Servicios</a></li>
+                <li><a class={`${route === "proyects" ? 
+                    "text-red-700 hover:text-red-700 transition-all duration-200" : 
+                    "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/proyects">Proyectos</a></li>
+                <li><a class={`${route === "client" ? 
+                    "text-red-700 hover:text-red-700 transition-all duration-200" : 
+                    "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/client">Cliente</a></li>
+                <li><a class={`${route === "blog" ? 
+                    "text-red-700 hover:text-red-700 transition-all duration-200" : 
+                    "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/blog">Blog</a></li>
                 <li><a class={`${route === "contact" ? 
-                "text-red-700 hover:text-red-700 transition-all duration-200" : 
-                "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/contact">Contacto</a></li>
+                    "text-red-700 hover:text-red-700 transition-all duration-200" : 
+                    "text-blue-400 hover:text-red-700 transition-all duration-200"}`} href="/contact">Contacto</a></li>
             </ul>
         </nav>
-        <nav class="flex justify-end">
+        <!-- <nav class="flex justify-end">
             <ul class="flex text-sm gap-4"  id="secondMenu-items">
                 <li class="bg-blue-400 text-white hover:bg-blue-600 transition-all duration-300 py-2 px-4 rounded-full">
                     <a href="/auth/login" >Ingresar</a>
@@ -52,10 +52,10 @@ const { route } = Astro.props
                     <button name="logout" id="logout" >Salir</button>
                 </li>
             </ul>
-        </nav>
+        </nav> -->
     </div>
 
-    <nav class="lg:hidden flex justify-end basis-0 z-40">
+    <!-- <nav class="lg:hidden flex justify-end basis-0 z-40">
         <button id="close-btn" class="w-4 text-blue-500 hidden">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" >
             <path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
@@ -67,74 +67,7 @@ const { route } = Astro.props
                 <path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
             </svg>
         </button>
-    </nav>  
+    </nav>   -->
 </header>
 
-<script>
 
-    // if there a token in local storage, delete the li Servicios and a Ingresar
-    const token = localStorage.getItem('token');
-    if (!token) {
-        const menuItems = document.getElementById("menu-items") as HTMLUListElement;
-        const services = menuItems.querySelector('li:nth-child(2)');
-        services.remove();
-    }
-    // if there is no token in local storage, delete the li Salir
-    if (!token) {
-        const secondMenuItems = document.getElementById("secondMenu-items") as HTMLUListElement;
-        const salir = secondMenuItems.querySelector('li:nth-child(2)');
-        salir.remove();
-    }
-    if (token) {
-        const secondMenuItems = document.getElementById("secondMenu-items") as HTMLUListElement;
-        const ingresar = secondMenuItems.querySelector('li:nth-child(1)');
-        ingresar.remove();
-    }
-    // if click button Salir then remove token from local storage
-    const logout = document.getElementById("logout") as HTMLButtonElement;
-    if (logout) {
-        logout.addEventListener('click', () => {
-            localStorage.removeItem('token');
-            window.location.href = '/';
-        });
-    }
-    document.addEventListener("DOMContentLoaded", () => {
-    const menu = document.getElementById("menu") as HTMLUListElement
-    const openBtn = document.getElementById("open-btn") as HTMLUListElement
-    const closeBtn = document.getElementById("close-btn") as HTMLUListElement
-    const menuItems = document.getElementById("menu-items") as HTMLUListElement;
-    const secondMenuItems = document.getElementById("secondMenu-items") as HTMLUListElement;
-    const links = Array.from(menuItems.getElementsByTagName("a")) as HTMLAnchorElement[];
-
-    if (menu && openBtn && closeBtn) {
-        function toggleMenu() {
-            openBtn.classList.toggle("hidden");
-            closeBtn.classList.toggle("hidden");
-            menu.classList.toggle("hidden");
-        }
-
-        openBtn.addEventListener("click", () => {
-            toggleMenu();
-            menu.classList.add('absolute', 'top-full', 'left-0', 'w-full', 'h-max', 'bg-white', 'text-black', 'flex', 'flex-col', 'justify-center', 'gap-10', 'py-4');
-            menuItems.classList.add('flex-col', 'bg-white');
-            secondMenuItems.classList.add('flex-col', 'bg-white', 'justify-center', 'w-full', 'px-10');
-            links.forEach((link) => link.classList.add('px-10'));
-        });
-
-        closeBtn.addEventListener("click", () => {
-            toggleMenu();
-            menu.classList.remove("absolute", "top-full", "left-0", "w-full", "h-max", "bg-white", "text-black", "flex", "flex-col", "justify-center");
-            menuItems.classList.remove('flex-col', 'bg-white');
-            secondMenuItems.classList.remove('flex-col', 'bg-white', 'justify-center', 'w-full', 'px-10');
-            links.forEach((link) => link.classList.remove('px-10'));
-        });
-
-        window.addEventListener("resize", () => {
-            if (window.innerWidth >= 1024) {
-                closeBtn.click(); // Cerrar menú si la ventana es lo suficientemente grande
-            }
-        });
-    }
-});
-
-</script>

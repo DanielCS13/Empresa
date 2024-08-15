@@ -8,17 +8,17 @@ import axios from "axios";
 	console.log(people)
 ---
 
-<Layout route="user" title="Cexpe | Personas">
+<Layout route="client" title="Examen">
 	<div class="mx-auto max-w-screen-lg" >
 
 		<div class="h-20"/>
-	<a href="/users/create" class="bg-blue-700 hover:bg-blue-800 p-2 rounded-full font-semibold text-white mb-4 inline-flex">Crear usuario</a>
+	<a href="/client/create" class="bg-blue-700 hover:bg-blue-800 p-2 rounded-full font-semibold text-white mb-4 inline-flex">Crear usuario</a>
 	<h1>Lista de Personas</h1>
 	<ul class="flex flex-col" >
         {
             people.map((person) => (
 				<li>
-                    <a href={`users/${person.nPerCodigo}`}
+                    <a href={`client/${person.nPerCodigo}`}
 					class="grid grid-cols-8 text-center 
 					hover:text-white hover:bg-red-500
 					"

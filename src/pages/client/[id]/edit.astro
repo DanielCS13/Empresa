@@ -1,20 +1,27 @@
 ---
-import InputsForm from "../../components/InputsForm.astro";
-import Layout from "../../layout/Layout.astro";
+import InputsForm from "../../../components/InputsForm.astro";
+import Layout from "../../../layout/Layout.astro";
+import axios from "axios";
+
+const { id } = Astro.params;
+const response = await axios.get(`http://localhost:3000/persona/${id}`);
+const user = response.data;
+console.log(user)
 ---
 
 <Layout route="user" title="Empresa | Personas">
 	<div class=" mx-auto max-w-screen-lg">
         <div class="h-20" />
+        <input type="hidden" id="id" value={id} >
         <InputsForm 
-            formTitle="Crear nuevo usuario"
-            username=""
-            lastname=""
-            address=""
-            birthdate=""
-            age={null}
-            salary={null}
-            status={null}
+            formTitle="Editar nuevo usuario"
+            username={user.cPerNombre}
+            lastname={user.cPerApellido}
+            address={user.cPerDireccion}
+            birthdate={user.cPerFecNac}
+            age={user.nPerEdad}
+            salary={user.nPerSueldo}
+            status={user.cPerEstado}
         />
     </div>
 
@@ -30,9 +37,9 @@ import Layout from "../../layout/Layout.astro";
             const age = (document.querySelector('#age') as HTMLInputElement).value;
             const salary = (document.querySelector('#salary') as HTMLInputElement).value;
             const status = (document.querySelector('#status') as HTMLInputElement).value;
-            
+            const id = (document.querySelector('#id') as HTMLInputElement).value;
             try {
-                const response = await axios.post('http://localhost:3000/persona', {
+                const response = await axios.patch(`http://localhost:3000/persona/${id}`, {
                     "cPerNombre": username,
                     "cPerApellido": lastname,
                     "cPerDireccion": address,
@@ -42,13 +49,13 @@ import Layout from "../../layout/Layout.astro";
                     "cPerEstado": status
                 });
                 console.log(response)
-                if (response.status === 201) {
-                    window.location.href = '/users';
+                if (response.status === 200) {
+                    window.location.href = '/client';
                 } else {
-                    alert('Error al crear el usuario ');
+                    alert('Error al crear el usuario');
                 }
             } catch (error) {
-                alert('Error al crear el usuario ');
+                alert('Error al crear el usuario');
             }
         });
     </script>
